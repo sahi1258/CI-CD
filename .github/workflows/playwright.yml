@@ -1,28 +1,19 @@
-name: Continuous Integration with Playwright Test Script
-
-on:
-  push:
-    branches:
-      - main # Change this to your main branch name
-
+name: End-to-end tests
+on: [push]
+#  schedule:
+#    - cron: '*/15 * * * *'
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
+  cypress-run:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install npm dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
         with:
-          node-version: '14'  # Change this to your desired Node.js version
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Cypress Tests
-        run: npm test
+          spec: cypress\e2e\tests\verifylogin.cy.js
 
 
 
