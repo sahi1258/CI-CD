@@ -1,4 +1,4 @@
-name: Continuous Integration with Cypress Tests
+name: Continuous 
 
 on:
   push:
