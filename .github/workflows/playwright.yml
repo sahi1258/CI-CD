@@ -7,14 +7,16 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2  
+        uses: actions/checkout@v3 
 
-      - name: Run Cypress Tests
-        run: cypress\e2e\tests\verifylogin.cy.js
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          spec: cypress/e2e/tests
 
 
 
