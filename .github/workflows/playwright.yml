@@ -1,18 +1,37 @@
 name: End-to-end tests
-on: [push]
-#  schedule:
-#    - cron: '*/15 * * * *'
+
+on:
+  push: # Trigger the workflow on code push events
+    branches:
+      - main # Change to the appropriate branch name
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
-      - name: Cypress run
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2 # Use v2 of the checkout action
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2 # Use v2 of the setup-node action
         with:
-          spec:  cypress\e2e\tests\verifylogin.cy.js
+          node-version: 14 # Change to your preferred Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Cypress run
+        run: npm run cypress-run # Replace with the actual command to run Cypress tests
+
+        # This step appears to be repeated, you might want to remove it
+      - name: Checkout again
+        uses: actions/checkout@v2 # Use v2 of the checkout action
+        with:
+          ref: ${{ github.sha }}
+
+      - name: Run Cypress tests
+        run: npm run cypress:run -- --spec "cypress/e2e/tests/verifylogin.cy.js"
+
 
          
