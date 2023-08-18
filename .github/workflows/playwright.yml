@@ -1,26 +1,29 @@
-name: End-to-end tests
+name: Cypress Tests
 
 on:
-  push: # Trigger the workflow on code push events
+  push:
     branches:
-      - main # Change to the appropriate branch name
+      - main
 
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 # Use v2 of the checkout action
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Cypress run
-        run: npm run cypress-run # Replace with the actual command to run Cypress tests
+        run: npm ci
 
       - name: Run Cypress tests
-        run: npm run cypress:run -- --spec "cypress/e2e/tests/verifylogin.cy.js"
+        run: npm run cypress:run
+
 
 
          
