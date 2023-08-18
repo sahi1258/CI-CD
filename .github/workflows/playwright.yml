@@ -19,12 +19,6 @@ jobs:
       - name: Cypress run
         run: npm run cypress-run # Replace with the actual command to run Cypress tests
 
-        # This step appears to be repeated, you might want to remove it
-      - name: Checkout again
-        uses: actions/checkout@v2 # Use v2 of the checkout action
-        with:
-          ref: ${{ github.sha }}
-
       - name: Run Cypress tests
         run: npm run cypress:run -- --spec "cypress/e2e/tests/verifylogin.cy.js"
 
