@@ -13,11 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2 # Use v2 of the checkout action
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2 # Use v2 of the setup-node action
-        with:
-          node-version: 14 # Change to your preferred Node.js version
-
       - name: Install dependencies
         run: npm install
 
