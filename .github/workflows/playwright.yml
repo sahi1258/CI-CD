@@ -14,7 +14,6 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: packages/example-application
-          command: npm exec cypress run-ct
           spec: cypress\e2e\tests\verifylogin.cy.js
 
 
