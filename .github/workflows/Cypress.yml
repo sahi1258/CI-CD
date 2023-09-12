@@ -3,7 +3,7 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to trigger the workflow
+      - main
 
 jobs:
   build:
@@ -11,21 +11,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v2 # Use the latest available version
 
       - name: Install Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v2 # Use the latest available version
         with:
-          node-version: 14  # Adjust the Node.js version as needed
+          node-version: 14
 
       - name: Install dependencies
-        run: npm install  # or yarn install if you use Yarn
+        run: npm install
 
       - name: Run Cypress tests
         run: npm run cypress\e2e\tests\verifysecond.cy.js
-    
 
       - name: Upload Cypress test results
         uses: cypress-io/github-action@v6
         with:
           enableDashboardUpload: true
+
