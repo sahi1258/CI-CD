@@ -1,26 +1,17 @@
-name: Automation Script
+name: Cypress Tests
 
-on:
-  push:
-    branches:
-      - main # Change this to your main branch name
+on: push
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-20.04
-
+  cypress-run:
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
+      - name: Checkout
+        uses: actions/checkout@v3
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v6
         with:
-          spec: cypress/e2e/tests/
-
-
-
-
-
-
-         
+          build: npm run build
+          start: npm start
