@@ -11,12 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 # Use the latest available version
+        uses: actions/checkout@v2
 
       - name: Install Node.js
-        uses: actions/setup-node@v2 # Use the latest available version
-        with:
-          node-version: 14
+        uses: actions/setup-node@v2
 
       - name: Install dependencies
         run: npm install
@@ -28,4 +26,3 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           enableDashboardUpload: true
-
