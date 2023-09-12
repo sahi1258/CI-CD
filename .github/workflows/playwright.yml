@@ -1,4 +1,4 @@
-name: Continuous 
+name: Automation Script
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          spec: cypress/e2e/tests
+          spec: cypress/e2e/tests/
 
 
 
